@@ -5,9 +5,72 @@
     var $body = $('body');
 
     /* Preloader Effect */
-    $window.on('load', function() {
-        $(".preloader").fadeOut(600);
-    });
+    if ($('.mil-preloader').length && typeof gsap !== 'undefined') {
+        var timeline = gsap.timeline();
+
+        timeline.to(".mil-preloader-animation", {
+            opacity: 1,
+        });
+
+        timeline.fromTo(
+            ".mil-animation-1 .mil-h3", {
+                y: "30px",
+                opacity: 0
+            }, {
+                y: "0px",
+                opacity: 1,
+                stagger: 0.4
+            }
+        );
+
+        timeline.to(".mil-animation-1 .mil-h3", {
+            opacity: 0,
+            y: '-30',
+        }, "+=.3");
+
+        timeline.fromTo(".mil-reveal-box", 0.1, {
+            opacity: 0,
+        }, {
+            opacity: 1,
+            x: '-30',
+        });
+
+        timeline.to(".mil-reveal-box", 0.45, {
+            width: "100%",
+            x: 0,
+        }, "+=.1");
+
+        timeline.to(".mil-reveal-box", {
+            right: "0"
+        });
+
+        timeline.to(".mil-reveal-box", 0.3, {
+            width: "0%"
+        });
+
+        timeline.fromTo(".mil-animation-2 .mil-h3", {
+            opacity: 0,
+        }, {
+            opacity: 1,
+        }, "-=.5");
+
+        timeline.to(".mil-animation-2 .mil-h3", 0.6, {
+            opacity: 0,
+            y: '-30'
+        }, "+=.5");
+
+        timeline.to(".mil-preloader", 0.8, {
+            opacity: 0,
+            ease: 'sine',
+            onComplete: function() {
+                $('.mil-preloader').addClass("mil-hidden");
+            }
+        }, "+=.2");
+    } else {
+        $window.on('load', function() {
+            $(".preloader, .mil-preloader").fadeOut(600);
+        });
+    }
 
     /* Sticky Header */
     if ($('.active-sticky-header').length) {
@@ -269,6 +332,109 @@
             removalDelay: 160,
             preloader: false,
             fixedContentPos: true
+        });
+    }
+
+    /* Interactive Partner Details Panel */
+    if ($('.our-expertise').length) {
+        var partnersData = {
+            axis: {
+                title: 'Axis Communications',
+                url: 'https://www.axis.com',
+                urlText: 'www.axis.com',
+                desc: 'Axis Communications AB is a Swedish manufacturer of network cameras for the physical security and video surveillance industry. A wide range of network video surveillance solutions including cameras and encoders, Video Management Software and recorders, analytics and applications. Axis IP-based portfolio ensures scalability and simplifies integration.'
+            },
+            iss: {
+                title: 'ISS Intelligent Security Systems',
+                url: 'https://www.issivs.com',
+                urlText: 'www.issivs.com',
+                desc: 'The ISS SecurOS solution set powers the most advanced video management and video analytics VMS in the surveillance world. ISS is the proven technology partner of the world’s largest integrators in the video security and surveillance marketplace with deployments in transportation, retail, banking, colleges, government, industry, and urban surveillance.'
+            },
+            milestone: {
+                title: 'Milestone Systems',
+                url: 'https://www.milestonesys.com',
+                urlText: 'www.milestonesys.com',
+                desc: 'Milestone designs, develops and produces world-leading IP-based video management solutions for organizations of all sizes. Milestone Systems is a global leader within open platform video management software (VMS) for IP network-based video surveillance, dedicated to delivering high quality business video platform software.'
+            },
+            veracity: {
+                title: 'Veracity',
+                url: 'https://www.veracityglobal.com',
+                urlText: 'www.veracityglobal.com',
+                desc: 'Veracity IP Transmission Products & Video Storage Distributors listing in UK, USA, Middle East and India. Veracity designs and manufactures industry-leading IP transmission devices, POE, EOC adapters and extenders and IP camera installation tools, IP video storage systems, and integrated command + control systems.'
+            },
+            ruijie: {
+                title: 'Ruijie Networks',
+                url: 'https://www.ruijienetworks.com',
+                urlText: 'www.ruijienetworks.com',
+                desc: 'Ruijie Networks has 41 branches with sales and service covering Asia, Europe, North America, and South America. Since founded in 2000, Ruijie has researched and self-developed 8 product lines, including switches, routers, wireless, cloud class, security, gateways, IT management and authentication & accounting.'
+            },
+            netgear: {
+                title: 'Netgear',
+                url: 'https://www.netgear.com',
+                urlText: 'www.netgear.com',
+                desc: 'Netgear Inc. is a multinational computer networking company based in San Jose, California, with offices in about 25 countries. It produces networking hardware for consumers, businesses, and service providers operating across retail, commercial, and service provider segments.'
+            },
+            multimedia: {
+                title: 'Multimedia Connect',
+                url: 'https://www.multimedia-connect.com',
+                urlText: 'www.multimedia-connect.com',
+                desc: 'Leader on the French market, Multimedia Connect is rapidly expanding its activities in EMEA and Asia. Multimedia Connect is a structured cabling system manufacturer, designing and producing communication solutions for intelligent buildings that enhances IP convergence.'
+            },
+            systemmax: {
+                title: 'System Max',
+                url: 'https://www.system-max.com',
+                urlText: 'www.system-max.com',
+                desc: 'Systemmax Rack is your shield that protects your valuable machines that contain the most valuable thing in your systems. Operating in major Middle East cities (Cairo – Dubai – Doha), providing full life-cycle IT services and end-to-end IP video management surveillance solutions.'
+            },
+            tiandy: {
+                title: 'Tiandy Technology',
+                url: 'https://www.tiandy.com',
+                urlText: 'www.tiandy.com',
+                desc: 'Tiandy Technologies is a globally recognized provider of advanced video surveillance and security solutions. With a strong focus on innovation, AI, intelligent video analytics, and high-quality imaging, Tiandy delivers comprehensive IP cameras, NVRs, VMS, and intelligent security platforms.'
+            }
+        };
+
+        var defaultTitle = 'Collaborating with <span>Industry Leaders</span>';
+        var defaultDesc = 'Collaborating closely with the industry’s largest professional network, we create unlimited opportunities to grow your business with our partners.';
+
+        var $partnerTitle = $('.our-expertise-content .partner-title');
+        var $partnerDesc = $('.our-expertise-content .partner-desc');
+        var $btnContainer = $('.our-expertise-content .expertise-btn');
+        var $partnerLink = $('.our-expertise-content .partner-link');
+        var $items = $('.expertise-item');
+        var $list = $('.expertise-list');
+
+        function resetToDefault() {
+            $items.removeClass('active');
+            $('.our-expertise-content').css('transition', 'opacity 0.2s ease').css('opacity', '0.3');
+            setTimeout(function() {
+                $partnerTitle.html(defaultTitle);
+                $partnerDesc.html(defaultDesc);
+                $btnContainer.stop(true, true).fadeOut(200);
+                $('.our-expertise-content').css('opacity', '1');
+            }, 150);
+        }
+
+        $items.on('mouseenter', function() {
+            var partnerKey = $(this).attr('data-partner');
+            var data = partnersData[partnerKey];
+            if (!data) return;
+
+            $items.removeClass('active');
+            $(this).addClass('active');
+
+            $('.our-expertise-content').css('transition', 'opacity 0.2s ease').css('opacity', '0.3');
+            setTimeout(function() {
+                $partnerTitle.html(data.title);
+                $partnerDesc.html(data.desc);
+                $partnerLink.attr('href', data.url).html('visit ' + data.urlText + ' <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>');
+                $btnContainer.stop(true, true).fadeIn(300);
+                $('.our-expertise-content').css('opacity', '1');
+            }, 150);
+        });
+
+        $list.on('mouseleave', function() {
+            resetToDefault();
         });
     }
 

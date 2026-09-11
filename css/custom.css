@@ -1536,6 +1536,22 @@ header.main-header .header-sticky.active .container-fluid::before {
     align-items: center;
     background: var(--white-color);
     border-radius: 100px;
+    padding: 6px 24px 6px 6px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease-in-out;
+}
+
+.expertise-item:hover,
+.expertise-item.active {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(228, 27, 34, 0.18);
+    border-color: #e41b22;
+    cursor: pointer;
+}
+
+.expertise-item.active .expertise-image figure {
+    border-color: #e41b22;
 }
 
 .expertise-item:first-child {
@@ -1543,24 +1559,43 @@ header.main-header .header-sticky.active .container-fluid::before {
 }
 
 .expertise-image figure {
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    margin: 0;
+    padding: 8px;
+    flex-shrink: 0;
 }
 
 .expertise-image img {
-    max-width: 75px;
-    border-radius: 50%;
+    max-width: 60px;
+    max-height: 60px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0;
+}
+
+.expertise-image img[src*="ISS"] {
+    filter: invert(0.95) hue-rotate(180deg);
 }
 
 .expertise-content {
-    padding: 0 30px 0 15px;
+    padding: 0 20px 0 15px;
 }
 
 .expertise-content p {
-    font-weight: 500;
+    font-weight: 600;
     text-transform: capitalize;
     color: var(--primary-color);
     margin: 0;
+    font-size: 17px;
 }
 
 /************************************/
