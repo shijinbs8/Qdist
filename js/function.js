@@ -394,47 +394,44 @@
             }
         };
 
-        var defaultTitle = 'Collaborating with <span>Industry Leaders</span>';
-        var defaultDesc = 'Collaborating closely with the industry’s largest professional network, we create unlimited opportunities to grow your business with our partners.';
+        // Our Expertise Defaults
+        var defaultExpTitle = 'Collaborating with <span>Industry Leaders</span>';
+        var defaultExpDesc = 'Collaborating closely with the industry’s largest professional network, we create unlimited opportunities to grow your business with our partners.';
 
-        var $partnerTitle = $('.our-expertise-content .partner-title');
-        var $partnerDesc = $('.our-expertise-content .partner-desc');
-        var $btnContainer = $('.our-expertise-content .expertise-btn');
-        var $partnerLink = $('.our-expertise-content .partner-link');
-        var $items = $('.expertise-item');
-        var $list = $('.expertise-list');
-
-        function resetToDefault() {
-            $items.removeClass('active');
-            $('.our-expertise-content').css('transition', 'opacity 0.2s ease').css('opacity', '0.3');
+        function resetExpertiseSection() {
+            $('.our-expertise .expertise-item').removeClass('active');
+            var $content = $('.our-expertise-content');
+            $content.css('transition', 'opacity 0.2s ease').css('opacity', '0.3');
             setTimeout(function() {
-                $partnerTitle.html(defaultTitle);
-                $partnerDesc.html(defaultDesc);
-                $btnContainer.stop(true, true).fadeOut(200);
-                $('.our-expertise-content').css('opacity', '1');
+                $content.find('.partner-title').html(defaultExpTitle);
+                $content.find('.partner-desc').html(defaultExpDesc);
+                $content.find('.expertise-btn').stop(true, true).fadeOut(200);
+                $content.css('opacity', '1');
             }, 150);
         }
 
-        $items.on('mouseenter', function() {
+        // Expertise Item Hover / Click
+        $(document).on('mouseenter click', '.our-expertise .expertise-item', function() {
             var partnerKey = $(this).attr('data-partner');
             var data = partnersData[partnerKey];
             if (!data) return;
 
-            $items.removeClass('active');
+            $('.our-expertise .expertise-item').removeClass('active');
             $(this).addClass('active');
 
-            $('.our-expertise-content').css('transition', 'opacity 0.2s ease').css('opacity', '0.3');
+            var $content = $('.our-expertise-content');
+            $content.css('transition', 'opacity 0.2s ease').css('opacity', '0.3');
             setTimeout(function() {
-                $partnerTitle.html(data.title);
-                $partnerDesc.html(data.desc);
-                $partnerLink.attr('href', data.url).html('visit ' + data.urlText + ' <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>');
-                $btnContainer.stop(true, true).fadeIn(300);
-                $('.our-expertise-content').css('opacity', '1');
+                $content.find('.partner-title').html(data.title);
+                $content.find('.partner-desc').html(data.desc);
+                $content.find('.partner-link').attr('href', data.url).html('visit ' + data.urlText + ' <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>');
+                $content.find('.expertise-btn').stop(true, true).fadeIn(300);
+                $content.css('opacity', '1');
             }, 150);
         });
 
-        $list.on('mouseleave', function() {
-            resetToDefault();
+        $(document).on('mouseleave', '.our-expertise', function() {
+            resetExpertiseSection();
         });
     }
 
