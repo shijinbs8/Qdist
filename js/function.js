@@ -6,70 +6,80 @@
 
     /* Preloader Effect */
     if ($('.mil-preloader').length && typeof gsap !== 'undefined') {
-        var timeline = gsap.timeline();
+        if (sessionStorage.getItem('qdist_preloader_shown')) {
+            $('.mil-preloader').addClass("mil-hidden").hide();
+        } else {
+            sessionStorage.setItem('qdist_preloader_shown', 'true');
+            var timeline = gsap.timeline();
 
-        timeline.to(".mil-preloader-animation", {
-            opacity: 1,
-        });
-
-        timeline.fromTo(
-            ".mil-animation-1 .mil-h3", {
-                y: "30px",
-                opacity: 0
-            }, {
-                y: "0px",
+            timeline.to(".mil-preloader-animation", {
                 opacity: 1,
-                stagger: 0.4
-            }
-        );
+            });
 
-        timeline.to(".mil-animation-1 .mil-h3", {
-            opacity: 0,
-            y: '-30',
-        }, "+=.3");
+            timeline.fromTo(
+                ".mil-animation-1 .mil-h3", {
+                    y: "30px",
+                    opacity: 0
+                }, {
+                    y: "0px",
+                    opacity: 1,
+                    stagger: 0.4
+                }
+            );
 
-        timeline.fromTo(".mil-reveal-box", 0.1, {
-            opacity: 0,
-        }, {
-            opacity: 1,
-            x: '-30',
-        });
+            timeline.to(".mil-animation-1 .mil-h3", {
+                opacity: 0,
+                y: '-30',
+            }, "+=.3");
 
-        timeline.to(".mil-reveal-box", 0.45, {
-            width: "100%",
-            x: 0,
-        }, "+=.1");
+            timeline.fromTo(".mil-reveal-box", 0.1, {
+                opacity: 0,
+            }, {
+                opacity: 1,
+                x: '-30',
+            });
 
-        timeline.to(".mil-reveal-box", {
-            right: "0"
-        });
+            timeline.to(".mil-reveal-box", 0.45, {
+                width: "100%",
+                x: 0,
+            }, "+=.1");
 
-        timeline.to(".mil-reveal-box", 0.3, {
-            width: "0%"
-        });
+            timeline.to(".mil-reveal-box", {
+                right: "0"
+            });
 
-        timeline.fromTo(".mil-animation-2 .mil-h3", {
-            opacity: 0,
-        }, {
-            opacity: 1,
-        }, "-=.5");
+            timeline.to(".mil-reveal-box", 0.3, {
+                width: "0%"
+            });
 
-        timeline.to(".mil-animation-2 .mil-h3", 0.6, {
-            opacity: 0,
-            y: '-30'
-        }, "+=.5");
+            timeline.fromTo(".mil-animation-2 .mil-h3", {
+                opacity: 0,
+            }, {
+                opacity: 1,
+            }, "-=.5");
 
-        timeline.to(".mil-preloader", 0.8, {
-            opacity: 0,
-            ease: 'sine',
-            onComplete: function() {
-                $('.mil-preloader').addClass("mil-hidden");
-            }
-        }, "+=.2");
+            timeline.to(".mil-animation-2 .mil-h3", 0.6, {
+                opacity: 0,
+                y: '-30'
+            }, "+=.5");
+
+            timeline.to(".mil-preloader", 0.8, {
+                opacity: 0,
+                ease: 'sine',
+                onComplete: function() {
+                    $('.mil-preloader').addClass("mil-hidden");
+                }
+            }, "+=.2");
+        }
     } else {
-        $window.on('load', function() {
-            $(".preloader, .mil-preloader").fadeOut(600);
-        });
+        if (sessionStorage.getItem('qdist_preloader_shown')) {
+            $(".preloader, .mil-preloader").hide();
+        } else {
+            sessionStorage.setItem('qdist_preloader_shown', 'true');
+            $window.on('load', function() {
+                $(".preloader, .mil-preloader").fadeOut(600);
+            });
+        }
     }
 
     /* Sticky Header */

@@ -48,6 +48,11 @@
 <body>
 
 <!-- Preloader Start -->
+<script>
+    if (sessionStorage.getItem('qdist_preloader_shown')) {
+        document.write('<style>.mil-preloader { display: none !important; }</style>');
+    }
+</script>
 <div class="mil-preloader">
     <div class="mil-preloader-animation">
         <div class="mil-pos-abs mil-animation-1">
@@ -71,11 +76,9 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <!-- Logo Start -->
-                    <a class="navbar-brand agdasima-regular" href="./">
-                        <span style="color: #E41B22;">Q</span><span style="color:#747474;">DIST</span>
-
-						<!-- <img src="images/logo.svg" alt="Logo"> -->
-					</a>
+                    <a class="navbar-brand" href="./">
+                        <img src="images/logo/Qd.png" alt="QDIST Logo" style="max-height: 70px; width: auto; vertical-align: middle;">
+                    </a>
                     <!-- Logo End -->
 
                     <!-- Main Menu Start -->
@@ -85,7 +88,7 @@
                                 <li class="nav-item submenu"><a class="nav-link" href="./">Home</a>
                                  
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                                <li class="nav-item"><a class="nav-link" href="service.html">Our Services</a></li>
                                 <li class="nav-item"><a class="nav-link" href="service.html">Activities</a></li>
                                 <li class="nav-item"><a class="nav-link" href="service.html">News</a></li>
                                 <li class="nav-item"><a class="nav-link" href="service.html">Careers</a></li>
@@ -250,7 +253,7 @@
                         <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">about us</h3>
-                            <h2 class="wow fadeInUp" data-wow-delay="0.2s">Qatar Distribution Company for Technology<span>(QDIST)</span></h2>
+                            <h2 class="wow fadeInUp" data-wow-delay="0.2s"><span>(QDIST)</span>Qatar Distribution Company for Technology</h2>
                             <p class="wow fadeInUp" data-wow-delay="0.4s">Qatar Distribution Company for Technology (QDIST) is the largest stocker and wholesale technology distributor in Qatar. QDIST creates sales and profitability opportunities for vendors and resellers through unique marketing programs, dedicated pre- and post-sales support, financial services, and reliable product aggregation and distribution.</p>
                         </div>
                         <!-- Section Title End -->
@@ -258,7 +261,7 @@
                         <!-- About Us List Start -->
                         <div class="about-us-list wow fadeInUp" data-wow-delay="0.6s">
                             <ul>
-                                <li>Cabling Solutions BL – Optronics, Selsor, B3</li>
+                                <!-- <li>Cabling Solutions BL – Optronics, Selsor, B3</li> -->
 
                                 <li>CCTV Solutions BL – Axis, Everfocus, Wavestore, GVD</li>
                                 <li>Data Networks BL – Fujitsu, Netgear</li>
@@ -554,7 +557,7 @@
                                         </figure>
                                     </div>
                                     <div class="expertise-content">
-                                        <p>Multimedia Connect</p>
+                                        <p>Magnizon</p>
                                     </div>
                                 </div>
 
@@ -599,7 +602,7 @@
                                         </figure>
                                     </div>
                                     <div class="expertise-content">
-                                        <p>Multimedia Connect</p>
+                                        <p>Magnizon</p>
                                     </div>
                                 </div>
 
@@ -801,10 +804,10 @@
                         <!-- Footer Menu Start -->
                         <div class="footer-menu">
                             <ul>
-                                <li><a href="">home</a></li>
-                                <li><a href="">about</a></li>
-                                <li><a href="">services</a></li>
-                                <li><a href="">contact</a></li>
+                                <li><a href="./">home</a></li>
+                                <li><a href="service.html">about</a></li>
+                                <li><a href="service.html">services</a></li>
+                                <li><a href="contact.html">contact</a></li>
                             </ul>
                         </div>
                         <!-- Footer Menu End -->
