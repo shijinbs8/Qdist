@@ -876,6 +876,26 @@ header.main-header .header-sticky.active .container-fluid::before {
     margin-left: 40px;
 }
 
+.hero-marquee-box {
+    margin-top: 110px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero-marquee-title {
+    color: var(--accent-color);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.hero-marquee-box .marquee-track .expertise-item {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+}
+
 .export-coaching-box {
     display: flex;
     flex-wrap: wrap;
