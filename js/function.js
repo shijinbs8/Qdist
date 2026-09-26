@@ -445,4 +445,15 @@
         });
     }
 
+    /* Hero Background Slideshow Rotation (Every 5 seconds) */
+    if ($('.hero-bg-slide').length > 1) {
+        var $heroSlides = $('.hero-bg-slide');
+        var currentHeroSlide = 0;
+        setInterval(function() {
+            $heroSlides.eq(currentHeroSlide).removeClass('active');
+            currentHeroSlide = (currentHeroSlide + 1) % $heroSlides.length;
+            $heroSlides.eq(currentHeroSlide).addClass('active');
+        }, 5000);
+    }
+
 })(jQuery);
