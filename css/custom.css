@@ -747,9 +747,11 @@ header.main-header .header-sticky.active .container-fluid::before {
 .hero {
     position: relative;
     background-color: var(--primary-color);
-    padding: 350px 30px 100px;
+    padding: 250px 30px 60px;
     margin-top: -120px;
     overflow: hidden;
+    min-height: 65vh;  /* Sets hero height to 65% of viewport height */
+    max-height: 800px; /* Caps maximum vertical expansion */
 }
 
 .hero-bg-slideshow {
@@ -916,7 +918,7 @@ background:
 }
 
 .hero-marquee-box {
-    margin-top: 110px;
+    margin-top: 50px;
     padding-top: 25px;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -926,13 +928,31 @@ background:
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
+    letter-spacing: 2.5px;
+    margin-bottom: 16px;
 }
 
 .hero-marquee-box .marquee-track .expertise-item {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.hero-marquee-box .marquee-track .expertise-item:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(228, 27, 34, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(228, 27, 34, 0.3);
+}
+
+.hero-marquee-box .marquee-track .expertise-item .expertise-content p {
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .export-coaching-box {

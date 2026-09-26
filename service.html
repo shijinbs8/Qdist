@@ -13,7 +13,9 @@
     <title>QDIST - Qatar Distribution Company for Technology</title>
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="">
-    <!-- Google Fonts Css-->
+    <!-- Preconnect & Speed Resource Hints -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&family=Agdasima:wght@400;700&display=swap"
@@ -41,8 +43,8 @@
 
     <!-- Preloader Start -->
     <script>
-        if (document.cookie.indexOf('qdist_preloader_seen=true') !== -1 || sessionStorage.getItem('qdist_preloader_shown')) {
-            document.write('<style>.mil-preloader { display: none !important; opacity: 0 !important; pointer-events: none !important; }</style>');
+        if (sessionStorage.getItem('qdist_preloader_shown')) {
+            document.write('<style>.mil-preloader { display: none !important; }</style>');
         }
     </script>
     <div class="mil-preloader">

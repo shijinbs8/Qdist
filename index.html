@@ -13,9 +13,12 @@
     <title>Qdist</title>
     <!-- Favicon Icon -->
     <!-- <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png"> -->
-    <!-- Google Fonts Css-->
+    <!-- Preconnect & Speed Resource Hints -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="images/HeroSection/b.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap" rel="stylesheet">
     <!-- Bootstrap Css -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -49,8 +52,8 @@
 
 <!-- Preloader Start -->
 <script>
-    if (document.cookie.indexOf('qdist_preloader_seen=true') !== -1 || sessionStorage.getItem('qdist_preloader_shown')) {
-        document.write('<style>.mil-preloader { display: none !important; opacity: 0 !important; pointer-events: none !important; }</style>');
+    if (sessionStorage.getItem('qdist_preloader_shown')) {
+        document.write('<style>.mil-preloader { display: none !important; }</style>');
     }
 </script>
 <div class="mil-preloader">
@@ -116,11 +119,11 @@
     <div class="hero bg-section">
         <!-- Hero Background Slideshow Start -->
         <div class="hero-bg-slideshow">
-            <div class="hero-bg-slide active" style="background-image: url('images/HeroSection/89.jpg');"></div>
+            <div class="hero-bg-slide active" style="background-image: url('images/HeroSection/b.jpg');"></div>
             <div class="hero-bg-slide" style="background-image: url('images/HeroSection/34.jpg');"></div>
-            <div class="hero-bg-slide" style="background-image: url('images/HeroSection/45.jpg');"></div>
-            <div class="hero-bg-slide" style="background-image: url('images/HeroSection/56.jpg');"></div>
-                        <div class="hero-bg-slide" style="background-image: url('images/HeroSection/67.jpg');"></div>
+            <div class="hero-bg-slide" style="background-image: url('images/HeroSection/a.jpg');"></div>
+            <!-- <div class="hero-bg-slide" style="background-image: url('images/HeroSection/56.jpg');"></div> -->
+                        <!-- <div class="hero-bg-slide" style="background-image: url('images/HeroSection/67.jpg');"></div> -->
                                                 <div class="hero-bg-slide" style="background-image: url('images/HeroSection/78.jpg');"></div>
 
         </div>

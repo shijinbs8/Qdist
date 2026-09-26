@@ -4,19 +4,12 @@
     var $window = $(window);
     var $body = $('body');
 
-    /* Preloader Effect (Persistent 30-day Cookie & Session Storage) */
-    var preloaderSeen = (document.cookie.indexOf('qdist_preloader_seen=true') !== -1) || sessionStorage.getItem('qdist_preloader_shown');
-
+    /* Preloader Effect */
     if ($('.mil-preloader').length && typeof gsap !== 'undefined') {
-        if (preloaderSeen) {
+        if (sessionStorage.getItem('qdist_preloader_shown')) {
             $('.mil-preloader').addClass("mil-hidden").hide();
         } else {
-            // Set cookie valid for 30 days & sessionStorage
-            var d = new Date();
-            d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
-            document.cookie = "qdist_preloader_seen=true; path=/; expires=" + d.toUTCString() + "; max-age=" + (30 * 24 * 60 * 60);
             sessionStorage.setItem('qdist_preloader_shown', 'true');
-
             var timeline = gsap.timeline();
 
             timeline.to(".mil-preloader-animation", {
@@ -46,89 +39,29 @@
                 x: '-30',
             });
 
-            timeline.to(".mil-reveal-box", 0.5, {
+            timeline.to(".mil-reveal-box", 0.45, {
                 width: "100%",
                 x: 0,
-                onStart: function() {
-                    $('.mil-reveal-box').addClass('burning');
-                }
             }, "+=.1");
 
-            // Extended Glass Breaking & Ember Particle Explosion Callback
-            timeline.add(function() {
-                var $frame = $('.mil-reveal-frame');
-                if ($frame.length) {
-                    var frameWidth = $frame.width() || 400;
-                    var frameHeight = $frame.height() || 60;
-                    for (var i = 0; i < 35; i++) {
-                        var isEmber = i % 2 === 0;
-                        var particleClass = isEmber ? 'mil-ember-particle' : 'mil-crack-fragment';
-                        var $p = $('<div class="' + particleClass + '"></div>');
-                        
-                        var size = isEmber ? (Math.random() * 12 + 5) : (Math.random() * 20 + 8);
-                        var startX = Math.random() * frameWidth;
-                        var startY = Math.random() * frameHeight;
-                        
-                        $p.css({
-                            width: size + 'px',
-                            height: size + 'px',
-                            left: startX + 'px',
-                            top: startY + 'px',
-                            opacity: 1
-                        });
-                        $frame.append($p);
-                        
-                        // Scatter broken glass fragments far away over 1.5s - 2.2s duration
-                        var angle = Math.random() * Math.PI * 2;
-                        var distance = Math.random() * 550 + 250;
-                        var destX = Math.cos(angle) * distance;
-                        var destY = Math.sin(angle) * distance - 100;
-                        
-                        gsap.to($p, {
-                            duration: Math.random() * 0.8 + 1.4, // Extended seconds for glass breaking
-                            x: destX,
-                            y: destY,
-                            rotation: Math.random() * 960 - 480,
-                            scale: Math.random() * 2.5 + 0.6,
-                            opacity: 0,
-                            ease: "power3.out",
-                            onComplete: function() {
-                                $(this.targets()).remove();
-                            }
-                        });
-                    }
-                }
+            timeline.to(".mil-reveal-box", {
+                right: "0"
             });
 
-            timeline.to(".mil-reveal-box", 0.35, {
-                width: "0%",
-                right: "0",
-                opacity: 0,
-                ease: "power3.in"
+            timeline.to(".mil-reveal-box", 0.3, {
+                width: "0%"
             });
 
-            // Line coming from the back side (3D Perspective zoom from depth)
             timeline.fromTo(".mil-animation-2 .mil-h3", {
                 opacity: 0,
-                scale: 0.35,
-                z: -450,
-                filter: "blur(14px)"
             }, {
                 opacity: 1,
-                scale: 1,
-                z: 0,
-                filter: "blur(0px)",
-                duration: 0.95,
-                ease: "back.out(1.5)",
-                onStart: function() {
-                    $('.mil-animation-2 .mil-h3').addClass('mil-text-highlighted');
-                }
-            }, "-=.3");
+            }, "-=.5");
 
-            timeline.to(".mil-animation-2 .mil-h3", 0.8, {
+            timeline.to(".mil-animation-2 .mil-h3", 0.6, {
                 opacity: 0,
                 y: '-30'
-            }, "+=2.0");
+            }, "+=.5");
 
             timeline.to(".mil-preloader", 0.8, {
                 opacity: 0,
@@ -139,12 +72,9 @@
             }, "+=.2");
         }
     } else {
-        if (preloaderSeen) {
+        if (sessionStorage.getItem('qdist_preloader_shown')) {
             $(".preloader, .mil-preloader").hide();
         } else {
-            var d = new Date();
-            d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000));
-            document.cookie = "qdist_preloader_seen=true; path=/; expires=" + d.toUTCString() + "; max-age=" + (30 * 24 * 60 * 60);
             sessionStorage.setItem('qdist_preloader_shown', 'true');
             $window.on('load', function() {
                 $(".preloader, .mil-preloader").fadeOut(600);
@@ -519,11 +449,28 @@
     if ($('.hero-bg-slide').length > 1) {
         var $heroSlides = $('.hero-bg-slide');
         var currentHeroSlide = 0;
+
+        // Preload all slideshow images immediately into browser cache
+        $heroSlides.each(function() {
+            var bgUrl = $(this).css('background-image').replace(/^url\(['"]?/, '').replace(/['"]?\)$/, '');
+            if (bgUrl && bgUrl !== 'none') {
+                var img = new Image();
+                img.src = bgUrl;
+            }
+        });
+
         setInterval(function() {
             $heroSlides.eq(currentHeroSlide).removeClass('active');
             currentHeroSlide = (currentHeroSlide + 1) % $heroSlides.length;
             $heroSlides.eq(currentHeroSlide).addClass('active');
         }, 5000);
+    }
+
+    /* Register Service Worker for Instant Asset Caching */
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('./sw.js').catch(function(err) {});
+        });
     }
 
 })(jQuery);
