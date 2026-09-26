@@ -49,8 +49,8 @@
 
 <!-- Preloader Start -->
 <script>
-    if (sessionStorage.getItem('qdist_preloader_shown')) {
-        document.write('<style>.mil-preloader { display: none !important; }</style>');
+    if (document.cookie.indexOf('qdist_preloader_seen=true') !== -1 || sessionStorage.getItem('qdist_preloader_shown')) {
+        document.write('<style>.mil-preloader { display: none !important; opacity: 0 !important; pointer-events: none !important; }</style>');
     }
 </script>
 <div class="mil-preloader">
@@ -63,7 +63,7 @@
         <div class="mil-pos-abs mil-animation-2">
             <div class="mil-reveal-frame">
                 <p class="mil-reveal-box"></p>
-                <p class="mil-h3 mil-muted mil-thin">Empowering Qatar's Tech Infrastructure with <span style="color: red;">QDIST</span></p>
+                <p class="mil-h3 mil-muted mil-thin">Empowering Qatar's Tech Infrastructure with <span style="color: red;"><b>QDIST</b></span></p>
             </div>
         </div>
     </div>
