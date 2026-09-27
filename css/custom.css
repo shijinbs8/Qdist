@@ -750,8 +750,7 @@ header.main-header .header-sticky.active .container-fluid::before {
     padding: 250px 30px 60px;
     margin-top: -120px;
     overflow: hidden;
-    min-height: 65vh;  /* Sets hero height to 65% of viewport height */
-    max-height: 800px; /* Caps maximum vertical expansion */
+    
 }
 
 .hero-bg-slideshow {
