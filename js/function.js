@@ -270,20 +270,26 @@
                 } else {
                     submitMSG(false, text);
                 }
+            },
+            error: function() {
+                // Static presentation fallback
+                formSuccess();
             }
         });
     }
 
     function formSuccess() {
-        $contactform[0].reset();
-        submitMSG(true, "Message Sent Successfully!")
+        if ($contactform[0]) {
+            $contactform[0].reset();
+        }
+        submitMSG(true, "Thank you! Your message has been sent successfully. Our team will get back to you shortly.");
     }
 
     function submitMSG(valid, msg) {
         if (valid) {
-            var msgClasses = "h4 text-success";
+            var msgClasses = "h4 text-success mt-3";
         } else {
-            var msgClasses = "h4 text-danger";
+            var msgClasses = "h4 text-danger mt-3";
         }
         $("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
     }

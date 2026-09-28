@@ -523,6 +523,8 @@ header.main-header .header-sticky.active .container-fluid::before {
     margin-left: 8px;
 }
 
+.main-menu ul li.active>a,
+.main-menu ul li a.active,
 .main-menu ul li a:hover,
 .main-menu ul li a:focus {
     color: var(--accent-color);
@@ -4379,6 +4381,11 @@ background:
 
 .contact-info-body .icon-box img {
     max-width: 20px;
+}
+
+.contact-info-body .icon-box i {
+    color: #ffffff;
+    font-size: 16px;
 }
 
 .contact-info-title {
