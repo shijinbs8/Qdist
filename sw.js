@@ -21,7 +21,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     // Only cache GET requests
     if (event.request.method !== 'GET') return;
-    
+
     // Ignore non-http/https protocols (like chrome-extension)
     if (!event.request.url.startsWith('http')) return;
 
