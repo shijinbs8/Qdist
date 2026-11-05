@@ -460,13 +460,18 @@ body {
 header.main-header {
     position: relative;
     z-index: 100;
-    margin-top: 50px;
-    padding: 0 30px;
+    width: 100%;
+    max-width: 1800px;
+    margin: 40px auto 0;
+    padding: 0 45px;
+    box-sizing: border-box;
 }
 
 .main-header .container-fluid {
     position: relative;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .main-header .container-fluid::before {
@@ -474,10 +479,10 @@ header.main-header {
     display: block;
     position: absolute;
     bottom: 0;
-    left: 15px;
+    left: 0;
     right: 0;
     border-bottom: 1px solid var(--dark-divider-color);
-    width: calc(100% - 30px);
+    width: 100%;
 }
 
 header.main-header .header-sticky {
@@ -813,10 +818,10 @@ header.main-header .header-sticky.active .container-fluid::before {
 .hero {
     position: relative;
     background-color: var(--primary-color);
-    padding: 250px 30px 60px;
-    margin-top: -120px;
+    padding: 185px 45px 50px;
+    margin-top: -115px;
     overflow: hidden;
-    
+    border-radius: 30px;
 }
 
 .hero-bg-slideshow {
@@ -964,6 +969,7 @@ header.main-header .header-sticky.active .container-fluid::before {
     width: 100%;
     max-width: 1560px;
     margin: 0 auto;
+    padding: 0 10px;
     z-index: 2;
 }
 
@@ -988,9 +994,11 @@ header.main-header .header-sticky.active .container-fluid::before {
 }
 
 .hero-marquee-box {
-    margin-top: 50px;
-    padding-top: 25px;
+    margin-top: 35px;
+    padding-top: 20px;
+    padding-bottom: 5px;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
 }
 
 .hero-marquee-title {
@@ -2732,8 +2740,9 @@ header.main-header .header-sticky.active .container-fluid::before {
     background-position: center center;
     background-size: cover;
     overflow: hidden;
-    padding: 250px 0 140px;
-    margin-top: -120px;
+    padding: 185px 0 110px;
+    margin-top: -115px;
+    border-radius: 30px;
 }
 
 .page-header:before {
@@ -4656,19 +4665,31 @@ header.main-header .header-sticky.active .container-fluid::before {
         margin-right: 50px;
         max-width: 100%;
     }
+    header.main-header {
+        width: calc(100% - 100px);
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 35px;
+        padding: 0 40px;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 @media only screen and (max-width: 1560px) {
     .bg-section {
-        width: calc(100% - 30px);
-        margin-left: 15px;
-        margin-right: 15px;
+        width: calc(100% - 40px);
+        margin-left: 20px;
+        margin-right: 20px;
     }
     header.main-header {
-        width: calc(100% - 30px);
-        margin-left: 15px;
-        margin-right: 15px;
-        margin-top: 15px;
+        width: calc(100% - 40px);
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-top: 25px;
+        padding: 0 35px;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     .navbar {
         max-width: 100%;
@@ -4695,8 +4716,16 @@ header.main-header .header-sticky.active .container-fluid::before {
 }
 
 @media only screen and (max-width: 1024px) {
+    .bg-section {
+        width: calc(100% - 30px);
+        margin-left: 15px;
+        margin-right: 15px;
+    }
     header.main-header {
-        padding: 0px;
+        width: calc(100% - 30px);
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 0 25px;
     }
     .main-menu .nav-menu-wrapper {
         margin-left: 20px;
@@ -4705,7 +4734,8 @@ header.main-header .header-sticky.active .container-fluid::before {
         padding: 10px !important;
     }
     .hero {
-        padding: 350px 0px 100px;
+        padding: 190px 25px 50px;
+        margin-top: -110px;
     }
     .export-coaching-step {
         padding-right: 20px;
@@ -4717,7 +4747,10 @@ header.main-header .header-sticky.active .container-fluid::before {
 
 @media only screen and (max-width: 991px) {
     header.main-header {
-        padding: 0;
+        width: calc(100% - 30px);
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 0 15px;
     }
     .navbar {
         padding: 20px 0 0;
