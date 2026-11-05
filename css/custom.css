@@ -57,21 +57,26 @@
 }
 
 .qdist-logo-font, 
-.section-title h1 span.qdist-logo-font {
+.section-title h1 span.qdist-logo-font,
+.section-title h2 span.qdist-logo-font,
+.section-title h3 span.qdist-logo-font {
     font-family: var(--logo-font);
     font-weight: 700;
     letter-spacing: 2px;
-    background: none;
-    -webkit-text-fill-color: initial;
-    color: var(--white-color);
+    background: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: inherit;
     display: inline-block;
+    margin-right: 6px;
 }
 
 .qdist-logo-font .q-letter,
-.section-title h1 span.qdist-logo-font .q-letter {
-    background: none;
-    -webkit-text-fill-color: #E41B22;
-    color: #E41B22;
+.section-title h1 span.qdist-logo-font .q-letter,
+.section-title h2 span.qdist-logo-font .q-letter,
+.section-title h3 span.qdist-logo-font .q-letter {
+    background: none !important;
+    -webkit-text-fill-color: #E41B22 !important;
+    color: #E41B22 !important;
 }
 
 .mil-preloader .qdist-logo-font {
@@ -416,6 +421,20 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
+.section-title h1 span.qdist-logo-font,
+.section-title h2 span.qdist-logo-font {
+    background: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: inherit;
+}
+
+.section-title h1 span.qdist-logo-font .q-letter,
+.section-title h2 span.qdist-logo-font .q-letter {
+    background: none !important;
+    -webkit-text-fill-color: #E41B22 !important;
+    color: #E41B22 !important;
+}
+
 .section-title p {
     margin-top: 30px;
     margin-bottom: 0;
@@ -716,25 +735,47 @@ header.main-header .header-sticky.active .container-fluid::before {
     margin: 0;
 }
 
+/* Unified styling for ALL links in Mobile / Tablet sidebar */
+@media (min-width: 992px) {
+    .main-menu ul li.mobile-menu-btn {
+        display: none !important;
+    }
+}
+
+.slicknav_nav,
+.slicknav_nav ul {
+    font-family: var(--default-font) !important;
+}
+
 .slicknav_nav .slicknav_row,
-.slicknav_nav li a {
+.slicknav_nav li a,
+.slicknav_nav li.mobile-menu-btn a,
+.slicknav_nav li.mobile-menu-btn.contact-btn a {
     position: relative;
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: capitalize;
-    padding: 10px 20px;
-    color: var(--white-color);
-    line-height: normal;
-    margin: 0;
+    font-family: var(--default-font) !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    text-transform: capitalize !important;
+    letter-spacing: 0.3px !important;
+    padding: 12px 20px !important;
+    color: var(--white-color) !important;
+    line-height: normal !important;
+    margin: 0 !important;
     border-radius: 0 !important;
+    background: transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    box-shadow: none !important;
     transition: all 0.3s ease-in-out;
 }
 
+.slicknav_nav li.active > a,
 .slicknav_nav a:hover,
 .slicknav_nav a:focus,
 .slicknav_nav .slicknav_row:hover {
-    background-color: transparent;
-    color: var(--primary-color);
+    background-color: transparent !important;
+    color: var(--accent-color) !important;
 }
 
 .slicknav_menu ul ul li a {
@@ -2670,6 +2711,13 @@ header.main-header .header-sticky.active .container-fluid::before {
 .footer-copyright-text p {
     color: var(--white-color);
     margin: 0;
+}
+
+.footer-copyright-text .qdist-logo-font {
+    margin: 0 4px;
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    vertical-align: baseline;
 }
 
 /************************************/
@@ -4688,6 +4736,22 @@ header.main-header .header-sticky.active .container-fluid::before {
     .header-btn {
         display: none;
     }
+    .hero-marquee-box .marquee-track .expertise-item {
+        padding: 6px 16px 6px 6px;
+    }
+    .hero-marquee-box .marquee-track .expertise-image figure {
+        width: 46px;
+        height: 46px;
+        padding: 5px;
+    }
+    .hero-marquee-box .marquee-track .expertise-image img {
+        max-width: 32px;
+        max-height: 32px;
+        image-rendering: -webkit-optimize-contrast;
+    }
+    .hero-marquee-box .marquee-track .expertise-content p {
+        font-size: 13px;
+    }
     .bg-section {
         width: 100%;
         margin-left: 0px;
@@ -5452,6 +5516,66 @@ header.main-header .header-sticky.active .container-fluid::before {
     }
     .hero-btn .btn-default.btn-highlighted {
         margin: 0px;
+    }
+    /* Hero Marquee mobile view: compact brand cards & crisp resolution */
+    .hero-marquee-box {
+        margin-top: 30px;
+        padding-top: 15px;
+    }
+    .hero-marquee-title {
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+    .hero-marquee-box .marquee-container,
+    .hero-marquee-box .marquee-row {
+        padding: 5px 0;
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.4) 15px,
+            #000 50px,
+            #000 calc(100% - 50px),
+            rgba(0, 0, 0, 0.4) calc(100% - 15px),
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.4) 15px,
+            #000 50px,
+            #000 calc(100% - 50px),
+            rgba(0, 0, 0, 0.4) calc(100% - 15px),
+            transparent 100%
+        );
+    }
+    .hero-marquee-box .marquee-track {
+        gap: 12px;
+    }
+    .hero-marquee-box .marquee-track .expertise-item {
+        padding: 5px 14px 5px 6px;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+    .hero-marquee-box .marquee-track .expertise-image figure {
+        width: 36px;
+        height: 36px;
+        padding: 4px;
+    }
+    .hero-marquee-box .marquee-track .expertise-image img {
+        max-width: 26px;
+        max-height: 26px;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+    .hero-marquee-box .marquee-track .expertise-content {
+        padding-left: 8px;
+    }
+    .hero-marquee-box .marquee-track .expertise-content p {
+        font-size: 12px;
+        font-weight: 600;
     }
     .export-coaching-box {
         display: none;
