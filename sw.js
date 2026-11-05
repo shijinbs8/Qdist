@@ -1,4 +1,4 @@
-const CACHE_NAME = 'qdist-v9';
+const CACHE_NAME = 'qdist-v12';
 
 // Install event: cache core assets
 self.addEventListener('install', (event) => {
