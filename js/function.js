@@ -174,7 +174,7 @@
     }
 
     /* Youtube Background Video JS */
-    if ($('#herovideo').length) {
+    if ($('#herovideo').length && typeof $.fn.YTPlayer === 'function') {
         var myPlayer = $("#herovideo").YTPlayer();
     }
 
